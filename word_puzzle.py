@@ -1,11 +1,15 @@
 # By submitting this assignment, I agree to the following:
-#   "Aggies do not lie, cheat, or steal, or tolerate those who do."
-#   "I have not given or received any unauthorized aid on this assignment."
+# "Aggies do not lie, cheat, or steal, or tolerate those who do."
+# "I have not given or received any unauthorized aid on this assignment."
 #
-# Name:         YOUR NAME
-# Section:      YOUR SECTION NUMBER
-# Assignment:   THE ASSIGNMENT NUMBER (e.g. Lab 1b-2)
-# Date:         DAY MONTH YEAR
+# Names:  Tyler Haidaczuk
+# Jai Joshi
+# Benjamin Sparks
+# NA
+# Section: 571
+# Assignment: Lab Topic 8 Team
+# Date: 27 October 2026
+#
 
 def print_puzzle(puzzle):
     """ Print puzzle as a long division problem. """
@@ -68,3 +72,9 @@ def make_number(word, key): #Tyler
         if word[i] in dictionary:
             int_equivalent += dictionary[word[i]]
     return int_equivalent
+def make_numbers (puzzle, key):
+    puzzle = puzzle.split(",")
+    numbers = []
+    for i in range(len(puzzle)):
+        numbers.append(make_number(puzzle[i], key))
+    return numbers
