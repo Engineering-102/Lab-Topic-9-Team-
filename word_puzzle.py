@@ -75,7 +75,7 @@ def make_numbers (puzzle, key):
 
 def main():
     # The lines below demonstrate what the print_puzzle function outputs.
-    words = input("Enter a word arithmetic puzzle:")
+    words = input("Enter a word arithmetic puzzle: ")
     print()
     print_puzzle(words)
     guess = input("Enter your guess, for example ABSDEFGHIJ: ")
