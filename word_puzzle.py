@@ -22,6 +22,16 @@ def main():
     puzzle = "RUE,EAR | RUMORS,UEII  ,UKTR ,EAR ,KEOS,KAIK,USA"
     print()
     print_puzzle(puzzle)
+def get_valid_letters(puzzle):
+    """ Return a string of valid letters for the puzzle. """
+    puzzle=puzzle.strip().replace(" ", "").replace(",", "").replace("|", "")
+    valid_letters = ""
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    print(puzzle)
+    for i in range(len(puzzle)):
+        if str(puzzle[i])in alphabet and not str(puzzle[i]) in valid_letters:
+            valid_letters += str(puzzle[i])
+    return valid_letters
 
 if __name__ == "__main__":
     main()
