@@ -57,3 +57,14 @@ def is_valid_guess(valid, guess): #Tyler
         return True
     else:
         return False
+
+def make_number(word, key): #Tyler
+    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    dictionary = {}
+    int_equivalent = ""
+    for i in range(len(key)):
+        dictionary[key[i]] = numbers[i]
+    for i in range (len(word)):
+        if word[i] in dictionary:
+            int_equivalent += dictionary[word[i]]
+    return int_equivalent
