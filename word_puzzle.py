@@ -23,9 +23,18 @@ def print_puzzle(puzzle):
 
 def main():
     # The lines below demonstrate what the print_puzzle function outputs.
-    puzzle = "RUE,EAR | RUMORS,UEII  ,UKTR ,EAR ,KEOS,KAIK,USA"
+    words = input("Enter a word arithmetic puzzle:")
     print()
-    print_puzzle(puzzle)
+    print_puzzle(words)
+    guess = input("Enter your guess, for example ABSDEFGHIJ: ")
+    if(is_valid_guess(words,guess)):
+        num = make_numbers(words, guess)
+        if(check_user_guess(num(1),num(2),num(3),num(4))):
+            print("Good job!)")
+        else:
+            print("Try again!")
+    else:
+        print("Your guess should contain exactly the 10 unique letters used")
     
 def get_valid_letters(puzzle):
     """ Return a string of valid letters for the puzzle. """
