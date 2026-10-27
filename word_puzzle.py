@@ -22,6 +22,7 @@ def main():
     puzzle = "RUE,EAR | RUMORS,UEII  ,UKTR ,EAR ,KEOS,KAIK,USA"
     print()
     print_puzzle(puzzle)
+    
 def get_valid_letters(puzzle):
     """ Return a string of valid letters for the puzzle. """
     puzzle=puzzle.strip().replace(" ", "").replace(",", "").replace("|", "")
@@ -32,7 +33,14 @@ def get_valid_letters(puzzle):
         if str(puzzle[i])in alphabet and not str(puzzle[i]) in valid_letters:
             valid_letters += str(puzzle[i])
     return valid_letters
-
+    
+def check_user_guess (dividend, divisor, quotient, remainder)):
+    """ Check if the user's guess is correct. """
+    if dividend == quotient*divisor + remainder:
+        return True
+    else:
+        return False
+        
 if __name__ == "__main__":
     main()
 
