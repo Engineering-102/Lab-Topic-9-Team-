@@ -71,7 +71,7 @@ def make_number(word, key): #Tyler
     for i in range (len(word)):
         if word[i] in dictionary:
             int_equivalent += dictionary[word[i]]
-    return int_equivalent
+    return int(int_equivalent)
 def make_numbers (puzzle, key):
     puzzle = puzzle.split(",")
     numbers = []
