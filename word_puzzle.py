@@ -35,3 +35,17 @@ def get_valid_letters(puzzle):
 
 if __name__ == "__main__":
     main()
+
+
+def is_valid_guess(valid, guess): #Tyler
+    counter = 0
+    valid = valid.split()
+    for x in guess:
+        for y in valid:
+            if x == y:
+                counter += 1
+                valid.remove(x)
+    if counter == 10:
+        return True
+    else:
+        return False
