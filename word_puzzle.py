@@ -38,7 +38,7 @@ def get_valid_letters(puzzle):
             valid_letters += str(puzzle[i])
     return valid_letters
     
-def check_user_guess (dividend, divisor, quotient, remainder)):
+def check_user_guess (dividend, divisor, quotient, remainder):
     """ Check if the user's guess is correct. """
     if dividend == quotient*divisor + remainder:
         return True
