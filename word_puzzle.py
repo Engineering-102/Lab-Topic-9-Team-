@@ -26,7 +26,6 @@ def get_valid_letters(puzzle):
     puzzle=puzzle.strip().replace(" ", "").replace(",", "").replace("|", "")
     valid_letters = ""
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    print(puzzle)
     for i in range(len(puzzle)):
         if str(puzzle[i])in alphabet and not str(puzzle[i]) in valid_letters:
             valid_letters += str(puzzle[i])
@@ -39,20 +38,19 @@ def check_user_guess (dividend, divisor, quotient, remainder):
     else:
         return False
         
-if __name__ == "__main__":
-    main()
-
-
-def is_valid_guess(valid, guess): #Tyler
-    counter = 0
-    valid = valid.split()
-    for x in guess:
-        for y in valid:
-            if x == y:
-                counter += 1
-                valid.remove(x)
-    if counter == 10:
-        return True
+def is_valid_guess(valid_letters, guess): #Tyler
+    guess=guess.strip().replace(" ", "").replace(",", "").replace("|", "")
+    valid_guess = ""
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for i in range(len(guess)):
+        if str(guess[i])in valid_letters and not str(guess[i]) in str(valid_guess):
+            valid_guess += str(guess[i])
+    if len(guess) == 10 and len(valid_guess)==10:
+        for i in range(len(valid_letters)):
+            if valid_letters[i] in valid_guess:
+                return True
+            else:
+                return False
     else:
         return False
 
@@ -66,25 +64,45 @@ def make_number(word, key): #Tyler
         if word[i] in dictionary:
             int_equivalent += dictionary[word[i]]
     return int(int_equivalent)
-def make_numbers (puzzle, key):
-    puzzle = puzzle.split(",")
-    numbers = []
-    for i in range(len(puzzle)):
-        numbers.append(make_number(puzzle[i], key))
-    return numbers
+
+def make_numbers(puzzle, guess):
+    parts = puzzle.split("|")
+
+    left_words = parts[0].split(",")
+    right_words = parts[1].split(",")
+
+    quotient = left_words[0].strip()
+    divisor = left_words[1].strip()
+    dividend = right_words[0].strip()
+    remainder = right_words[-1].strip()
+
+    dividend_number = make_number(dividend, guess)
+    quotient_number = make_number(quotient, guess)
+    divisor_number = make_number(divisor, guess)
+    remainder_number = make_number(remainder, guess)
+
+    return (dividend_number, quotient_number,
+            divisor_number, remainder_number)
 
 def main():
-    # The lines below demonstrate what the print_puzzle function outputs.
-    words = input("Enter a word arithmetic puzzle: ")
+    puzzle = input("Enter a word arithmetic puzzle: \n")
+    print_puzzle(puzzle)
+    valid_letters = get_valid_letters(puzzle)
     print()
-    print_puzzle(words)
-    guess = input("Enter your guess, for example ABSDEFGHIJ: ")
-    if(is_valid_guess(words,guess)):
-        num = make_numbers(words, guess)
-        if(check_user_guess(num(1),num(2),num(3),num(4))):
-            print("Good job!)")
+    guess = input("Enter your guess, for example ABCDEFGHIJ: ")
+    if not is_valid_guess(valid_letters, guess):
+        print("Your guess should contain exactly 10 unique letters used in the puzzle.")
+    else:
+        numbers = make_numbers(puzzle, guess)
+        dividend = numbers[0]
+        quotient = numbers[1]
+        divisor = numbers[2]
+        remainder = numbers[3]
+        if check_user_guess(dividend, quotient, divisor, remainder):
+            print("Good job!")
         else:
             print("Try again!")
-    else:
-        print("Your guess should contain exactly the 10 unique letters used")
-    
+
+if __name__ == "__main__":
+    main()
+# Style Comment Thank God it finally works
